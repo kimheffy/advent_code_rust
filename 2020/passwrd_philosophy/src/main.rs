@@ -1,3 +1,5 @@
+mod part2;
+
 extern crate f_reader;
 
 use f_reader::read;
@@ -9,7 +11,7 @@ fn main() {
 
     for line in reader.lines() {
         if let Ok(l) = line {
-            if true == parse_passwrd(&l) {
+            if true == part2::part2(&l) {
                 counter += 1;
             }
         }
@@ -73,5 +75,31 @@ mod test {
         let expected = true;
 
         assert_eq!(expected, actual);
+    }
+}
+
+#[cfg(test)]
+mod test2 {
+    use crate::part2::part2;
+
+    #[test]
+    fn example1() {
+        let expect = true;
+        let actual = part2("1-3 a: abcde");
+        assert_eq!(expect, actual);
+    }
+
+    #[test]
+    fn example2() {
+        let expect = false;
+        let actual = part2("1-3 b: cdefg");
+        assert_eq!(expect, actual);
+    }
+
+    #[test]
+    fn example3() {
+        let expect = false;
+        let actual = part2("2-9 c: ccccccccc");
+        assert_eq!(expect, actual);
     }
 }
