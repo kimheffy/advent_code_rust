@@ -1,27 +1,34 @@
+use std::collections::{HashMap, HashSet};
+use std::fs::File;
 use std::io::prelude::*;
 use std::io::BufReader;
-use std::fs::File;
-use std::collections::{HashMap, HashSet};
+use std::path::Path;
 
 fn main() {
-    let file = File::open("list.txt").unwrap();
-    let mut reader = BufReader::new(file);
+    let path = Path::new("list.txt");
+    let display = path.display();
+    let mut file = match File::open(&path) {
+        Err(why) => panic!("couldn't open {}: {}", display, why),
+        Ok(file) => file,
+    };
+    let reader = BufReader::new(file);
 
     let mut num_list: Vec<i32> = Vec::new();
-    let mut map: HashMap<i32, i32> = HashMap::new();
-    let mut set: HashSet<i32> = HashSet::new();
 
     for line in reader.lines() {
         let parse_int: i32 = line.unwrap().parse::<i32>().unwrap();
         num_list.push(parse_int);
     }
 
-    for (i, x) in num_list.iter().enumerate() {
-        for n in i + 1..=num_list.len() {
-            let compliment: i32 = 2020 - x - num_list.get(n).unwrap();
-            set.insert(compliment);
+    // Triple loop
+    for i in 0..num_list.len() {
+        for j in i+1..num_list.len() {
+            for k in j+1..num_list.len() {
+                if num_list[i] + num_list[j] + num_list[k] == 2020 {
+                    let product = num_list[i] * num_list[j] * num_list[k];
+                    println!("The product is: {}", product);
+                }
+            }
         }
     }
-
-    println!("{:?}", set);
 }
