@@ -1,0 +1,13 @@
+[package]
+name = "passwrd"
+version = "0.1.0"
+authors = ["Jeffrey Kim <kimjeffrey96@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "f_reader"
+path = "/Users/jeffkim/code/advent_code_rust/libs/f_reader/src/lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
