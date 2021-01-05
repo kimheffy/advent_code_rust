@@ -1,7 +1,6 @@
 use std::path::Path;
 use std::fs::File;
 use std::io::BufReader;
-use std::io::prelude::*;
 
 pub fn read(filename: &str) -> BufReader<File>{
     let path = Path::new(filename);
