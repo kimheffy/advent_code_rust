@@ -2,12 +2,9 @@ extern crate f_reader;
 
 use f_reader::read;
 
-use std::io::{BufRead, BufReader};
-use std::io::BufWriter;
+use std::io::{BufRead};
 use std::io::prelude::*;
 use std::fs::File;
-use std::ops::Index;
-use std::borrow::Borrow;
 
 fn extend_file_by(n: u32) {
     let reader = read("sample.txt");
@@ -81,10 +78,10 @@ fn main() {
 
     let reader = read("final.txt");
 
-    let mut sled1: Sled = Sled::new();
-    let mut sled2: Sled = Sled::new();
-    let mut sled3: Sled = Sled::new();
-    let mut sled4: Sled = Sled::new();
+    let sled1: Sled = Sled::new();
+    let sled2: Sled = Sled::new();
+    let sled3: Sled = Sled::new();
+    let sled4: Sled = Sled::new();
     let mut sled5: Sled = Sled::new();
 
     sled5.set_right(1);
